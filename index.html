@@ -550,13 +550,13 @@ body.opened .scroll-cue{
    ============================================================ */
 .ring-ornament{
   position:relative;
-  width:74px;
+  width:92px;
   margin:0 auto 20px;
 }
 .ring-ornament::before{
   content:'';
   position:absolute;
-  inset:-14px -6px;
+  inset:-14px -4px;
   border-radius:50%;
   pointer-events:none;
   opacity:0;
@@ -570,21 +570,43 @@ body.opened .scroll-cue{
   height:auto;
   overflow:visible;
   display:block;
-  color:var(--gold);
 }
+
 .ring-path{
   fill:none;
-  stroke:currentColor;
-  stroke-width:2.6;
+  stroke:url(#ringBand);
+  stroke-width:5.4;
   stroke-linecap:round;
-  /* Circumference of r=14 (2πr ≈ 88); starts fully hidden and traces
-     itself in once the section scrolls into view. */
-  stroke-dasharray:88;
-  stroke-dashoffset:88;
+  /* Ellipse circumference (Ramanujan approx, rx=15 ry=9.5) ≈ 79; starts
+     fully hidden and traces itself in once scrolled into view. */
+  stroke-dasharray:79;
+  stroke-dashoffset:79;
   transition:stroke-dashoffset 1s var(--ease-out);
 }
 .on-scroll.in .ring-path{ stroke-dashoffset:0 }
 .on-scroll.in .ring-path-2{ transition-delay:.3s }
+
+.ring-shadow{
+  fill:none;
+  stroke:rgba(0,0,0,.32);
+  stroke-width:5.4;
+  opacity:0;
+  transition:opacity 1s ease;
+}
+.on-scroll.in .ring-shadow{ opacity:1 }
+
+/* The diamond appears only once both bands have finished drawing. */
+.ring-gem{
+  opacity:0;
+  transform-origin:47px 10px;
+  transform:scale(.4);
+  transition:opacity .5s var(--ease-out), transform .5s var(--ease-out);
+}
+.on-scroll.in .ring-gem{
+  opacity:1;
+  transform:scale(1);
+  transition-delay:1.15s;
+}
 
 /* ============================================================
    COUNTDOWN
@@ -1017,9 +1039,36 @@ body.card-open #sagaiLabel{ opacity:0 }
   <!-- ======================= COUNTDOWN ======================= -->
   <section class="on-scroll" aria-labelledby="cdLabel">
     <div class="ring-ornament" aria-hidden="true">
-      <svg viewBox="0 0 64 34">
-        <circle class="ring-path" cx="24" cy="17" r="14"/>
-        <circle class="ring-path ring-path-2" cx="40" cy="17" r="14"/>
+      <svg viewBox="0 0 80 46">
+        <defs>
+          <linearGradient id="ringBand" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0"    stop-color="#7a5c12"/>
+            <stop offset=".22"  stop-color="#F5E1A4"/>
+            <stop offset=".48"  stop-color="#D4AF37"/>
+            <stop offset=".68"  stop-color="#FFF7DA"/>
+            <stop offset="1"    stop-color="#8a6d17"/>
+          </linearGradient>
+          <radialGradient id="ringGem" cx="35%" cy="30%" r="75%">
+            <stop offset="0"   stop-color="#FFFFFF"/>
+            <stop offset=".55" stop-color="#EAF6FF"/>
+            <stop offset="1"   stop-color="#BFD9E8"/>
+          </radialGradient>
+        </defs>
+
+        <!-- soft dark echo beneath each band, for a lifted, dimensional feel -->
+        <ellipse class="ring-shadow" cx="30" cy="30" rx="15" ry="9.5" transform="rotate(-10 30 30) translate(0 2.4)"/>
+        <ellipse class="ring-shadow" cx="47" cy="25" rx="15" ry="9.5" transform="rotate(8 47 25) translate(0 2.4)"/>
+
+        <!-- the two bands, tilted to rest against one another rather than
+             sitting as a flat, symmetric Venn overlap -->
+        <ellipse class="ring-path" cx="30" cy="30" rx="15" ry="9.5" transform="rotate(-10 30 30)"/>
+        <ellipse class="ring-path ring-path-2" cx="47" cy="25" rx="15" ry="9.5" transform="rotate(8 47 25)"/>
+
+        <!-- a small diamond on the front band -->
+        <g class="ring-gem" transform="translate(47 10)">
+          <polygon points="0,-6 5,0 0,7 -5,0" fill="url(#ringGem)" stroke="#D4AF37" stroke-width="1"/>
+          <polygon points="0,-6 5,0 0,-1 -5,0" fill="#fff" opacity=".55"/>
+        </g>
       </svg>
     </div>
     <p class="section-label" id="cdLabel">Counting down to the day</p>
