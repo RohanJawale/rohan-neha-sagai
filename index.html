@@ -625,32 +625,6 @@ body.card-open #sagaiLabel{ opacity:0 }
 }
 .btn-ghost:hover{ background:rgba(212,175,55,.14) }
 
-/* ============================================================
-   RSVP
-   ============================================================ */
-.rsvp{ text-align:center; padding:8px 0 0 }
-.rsvp-title{
-  font-family:var(--font-display);
-  font-size:clamp(1.6rem,8vw,2.1rem);
-  font-weight:600;
-  color:var(--gold);
-  margin:0 0 10px;
-}
-.rsvp-copy{
-  color:var(--ivory-dim);
-  font-size:.97rem;
-  margin:0 auto 24px;
-  max-width:31ch;
-}
-.rsvp-actions{ display:flex; flex-direction:column; gap:11px; max-width:330px; margin:0 auto }
-.rsvp-note{
-  margin:20px 0 0;
-  font-size:.78rem;
-  letter-spacing:.04em;
-  color:var(--ivory-dim);
-}
-.rsvp-note a{ color:var(--gold); text-decoration:none; border-bottom:1px solid rgba(212,175,55,.45) }
-
 .blessing{
   margin:56px auto 0;
   text-align:center;
@@ -873,30 +847,6 @@ body.card-open #sagaiLabel{ opacity:0 }
     <svg viewBox="0 0 24 24" fill="currentColor"><use href="#lotus"></use></svg>
   </div>
 
-  <!-- ======================= RSVP ======================= -->
-  <section class="rsvp on-scroll" aria-labelledby="rsvpTitle">
-    <h2 class="rsvp-title" id="rsvpTitle">Will you join us?</h2>
-    <p class="rsvp-copy">Your presence would mean the world to us. Do let us know so we can keep a seat waiting.</p>
-
-    <div class="rsvp-actions">
-      <a class="btn btn-gold" id="waBtn" href="#" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.86 9.86 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.1c-.24.68-1.4 1.3-1.93 1.35-.53.06-1.02.08-1.77-.2-.44-.16-1.02-.35-1.76-.67-2.6-1.12-4.3-3.74-4.43-3.91-.13-.18-1.06-1.41-1.06-2.69 0-1.28.67-1.91.9-2.17.24-.26.52-.33.7-.33h.5c.16 0 .38-.06.58.44.2.51.7 1.75.76 1.87.06.13.1.28.01.45-.09.18-.31.48-.53.72-.1.11-.24.23-.1.46.13.24.6.98 1.28 1.59.88.78 1.6 1.03 1.83 1.15.23.11.37.1.5-.06.14-.15.6-.7.76-.94.16-.24.32-.2.54-.12.22.08 1.4.66 1.64.78.24.12.4.18.46.28.06.1.06.6-.18 1.28z"/>
-        </svg>
-        RSVP on WhatsApp
-      </a>
-
-      <button class="btn btn-ghost" id="shareBtn" type="button" hidden>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M12 16V3M8 7l4-4 4 4"/>
-        </svg>
-        Share this invite
-      </button>
-    </div>
-
-    <p class="rsvp-note">Or call us at <a href="tel:+919545707666">+91 95457 07666</a></p>
-  </section>
-
   <p class="blessing on-scroll">May Shree Ganesha bless this new beginning with joy, prosperity and love.</p>
   <p class="signoff on-scroll">Rohan &amp; Neha · Pune · 2026</p>
 
@@ -933,13 +883,13 @@ body.card-open #sagaiLabel{ opacity:0 }
 'use strict';
 
 /* ============================================================
-   CONFIGURATION  —  edit these five values, nothing else
+   CONFIGURATION  —  edit these four values, nothing else
    ============================================================ */
 
 // Ambient music. Leave empty ('') and the speaker button stays hidden.
-// Point it at a short, looping instrumental (shehnai / sitar) hosted anywhere
-// that allows cross-origin playback.
-var AUDIO_URL = '';
+// Sits next to this file, so it is fetched only after the envelope is tapped —
+// nothing competes with the first paint.
+var AUDIO_URL = 'shiv-parvati.mp3';
 
 // Ceremony start time, 24h 'HH:MM' in IST. Leave empty ('') for an all-day
 // event: the countdown targets midnight and the calendar file has no time.
@@ -947,7 +897,6 @@ var AUDIO_URL = '';
 var EVENT_TIME = '';
 
 var EVENT_DATE   = '2026-08-16';                                          // YYYY-MM-DD, IST
-var WHATSAPP_NUM = '919545707666';                                        // country code, no '+'
 var MAPS_URL     = 'https://maps.app.goo.gl/fg9mexdWh6X8wakx8';
 
 var VENUE   = 'Mauli Veg Restaurant and Banquet Hall, Katraj, Pune';
@@ -1086,15 +1035,6 @@ if (!allDay){
 })();
 
 /* ============================================================
-   WHATSAPP RSVP
-   ============================================================ */
-(function whatsapp(){
-  var msg = 'Namaste! Thank you for the invitation to Rohan & Neha\'s engagement ' +
-            'on Sunday, 16 August 2026. ';
-  $('#waBtn').href = 'https://wa.me/' + WHATSAPP_NUM + '?text=' + encodeURIComponent(msg);
-})();
-
-/* ============================================================
    ADD TO CALENDAR  —  .ics built client-side
    ============================================================ */
 (function calendar(){
@@ -1148,22 +1088,6 @@ if (!allDay){
     a.click();
     a.remove();
     setTimeout(function(){ URL.revokeObjectURL(url); }, 1500);
-  });
-})();
-
-/* ============================================================
-   WEB SHARE  —  only shown where supported
-   ============================================================ */
-(function share(){
-  var btn = $('#shareBtn');
-  if (!navigator.share) return;
-  btn.hidden = false;
-  btn.addEventListener('click', function(){
-    navigator.share({
-      title: TITLE,
-      text:  'Rohan & Neha are getting engaged — Sunday, 16 August 2026, Pune.',
-      url:   location.href.split('?')[0]
-    }).catch(function(){ /* user dismissed */ });
   });
 })();
 
@@ -1501,10 +1425,12 @@ var audio = (function(){
   var btn = $('#audioToggle');
   if (!AUDIO_URL){ return { unlock: function(){} }; }
 
-  var el = new Audio(AUDIO_URL);
+  var el = new Audio();
   el.loop = true;
   el.volume = 0.32;
-  el.preload = 'auto';
+  // 'none' + late src assignment keeps ~2 MB off the initial page load.
+  el.preload = 'none';
+  el.src = AUDIO_URL;
 
   var on = false;
   btn.classList.add('live');
