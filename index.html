@@ -197,10 +197,13 @@ a{color:inherit}
 }
 /* A small overshoot on the way up reads as "presenting", not just sliding. */
 .gate.lifting .env-card{ animation:card-lift 1.2s var(--ease-out) both }
+/* No rotate here: even a slight tilt pushes the card's corners past the
+   envelope's own edges (nothing clips it there), which reads as a
+   misaligned glitch rather than a bounce. Scale-only overshoot instead. */
 @keyframes card-lift{
-  0%  { transform:translateY(0)     scale(.97) rotateZ(0deg);    opacity:0 }
-  60% { transform:translateY(-52%)  scale(1.02) rotateZ(-1.4deg); opacity:1 }
-  100%{ transform:translateY(-46%) scale(1)    rotateZ(0deg);    opacity:1 }
+  0%  { transform:translateY(0)    scale(.97); opacity:0 }
+  60% { transform:translateY(-52%) scale(1.02); opacity:1 }
+  100%{ transform:translateY(-46%) scale(1);    opacity:1 }
 }
 
 .env-card-glyph{ width:44%; color:var(--maroon); opacity:.5 }
