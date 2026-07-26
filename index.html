@@ -152,6 +152,27 @@ a{color:inherit}
   box-shadow:0 26px 60px -18px rgba(0,0,0,.75), inset 0 0 40px rgba(0,0,0,.35);
 }
 
+/* Warm light spilling from the envelope's mouth as the flap lifts, sitting
+   above the pocket/flap (z 3-4) but below the seal (6) and rising card (2
+   is fine underneath since the glow reads as coming from behind the card). */
+.env::before{
+  content:'';
+  position:absolute;
+  left:6%; right:6%; top:-10%;
+  height:62%;
+  background:radial-gradient(60% 100% at 50% 100%, rgba(255,238,180,.9), rgba(255,238,180,0) 72%);
+  opacity:0;
+  pointer-events:none;
+  z-index:5;
+  filter:blur(2px);
+}
+.gate.opening .env::before{ animation:env-glow 1.5s ease-out both }
+@keyframes env-glow{
+  0%  { opacity:0 }
+  38% { opacity:.85 }
+  100%{ opacity:0 }
+}
+
 /* The card that lifts out of the envelope once the flap is open. */
 .env-card{
   position:absolute;
@@ -163,9 +184,7 @@ a{color:inherit}
   border-radius:4px;
   box-shadow:0 -6px 22px -6px rgba(0,0,0,.5);
   z-index:2;
-  transform:translateY(0) scale(.97);
   opacity:0;
-  transition:transform 1s var(--ease-out), opacity .5s ease;
   display:grid;
   place-items:center;
 }
@@ -176,7 +195,13 @@ a{color:inherit}
   border:1px solid rgba(154,123,34,.55);
   border-radius:2px;
 }
-.gate.lifting .env-card{ transform:translateY(-46%) scale(1); opacity:1 }
+/* A small overshoot on the way up reads as "presenting", not just sliding. */
+.gate.lifting .env-card{ animation:card-lift 1.2s var(--ease-out) both }
+@keyframes card-lift{
+  0%  { transform:translateY(0)     scale(.97) rotateZ(0deg);    opacity:0 }
+  60% { transform:translateY(-52%)  scale(1.02) rotateZ(-1.4deg); opacity:1 }
+  100%{ transform:translateY(-46%) scale(1)    rotateZ(0deg);    opacity:1 }
+}
 
 .env-card-glyph{ width:44%; color:var(--maroon); opacity:.5 }
 
@@ -208,7 +233,7 @@ a{color:inherit}
   clip-path:polygon(0 0, 100% 0, 50% 100%);
   transform-origin:top center;
   transform:rotateX(0deg);
-  transition:transform 1s var(--ease-flap);
+  transition:transform 1.3s var(--ease-flap);
   backface-visibility:visible;
 }
 .env-flap::after{
@@ -238,6 +263,23 @@ a{color:inherit}
 }
 .seal svg{ width:100%; height:100%; overflow:visible; display:block }
 .seal .seal-glyph{ color:var(--gold-bright) }
+
+/* A light-ring cracking outward from the seal at the moment of the tap. */
+.seal::after{
+  content:'';
+  position:absolute;
+  inset:-8px;
+  border-radius:50%;
+  border:2px solid var(--gold-bright);
+  opacity:0;
+  transform:scale(.6);
+  pointer-events:none;
+}
+.gate.opening .seal::after{ animation:seal-ripple .8s ease-out both }
+@keyframes seal-ripple{
+  0%  { opacity:.9; transform:scale(.6) }
+  100%{ opacity:0;  transform:scale(2.6) }
+}
 
 /* Centring lives in the `translate` property so `transform` is free for
    scale/rotate — mixing both here would double the offset. */
@@ -1735,13 +1777,17 @@ var audio = (function(){
       return;
     }
 
-    el.classList.add('opening');                                  // seal pops, flap folds up
-    setTimeout(function(){ el.classList.add('lifting'); },  620);  // card rises out
+    // Slower, clearly staged: seal cracks with a light ripple -> flap folds
+    // back over ~1.3s while warm light spills from the envelope's mouth ->
+    // the card rises with a small overshoot -> a brief pause to let it be
+    // seen before the whole gate fades into the hero.
+    el.classList.add('opening');                                  // seal cracks, flap folds up
+    setTimeout(function(){ el.classList.add('lifting'); },  750);  // card rises out (~1.2s)
     setTimeout(function(){
       el.classList.add('gone');
       document.body.classList.add('opened');                      // hero stagger fires
-    }, 1450);
-    setTimeout(function(){ el.remove(); }, 2250);
+    }, 2500);
+    setTimeout(function(){ el.remove(); }, 3300);
   }
 
   seal.addEventListener('click', open);
