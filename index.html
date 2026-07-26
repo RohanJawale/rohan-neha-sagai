@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rohan &amp; Neha — Engagement Ceremony</title>
+<meta name="description" content="With the blessings of Shree Ganesha, we invite you to the engagement ceremony of Rohan &amp; Neha — Sunday, 16 August 2026, Pune.">
+<meta name="theme-color" content="#4a0000">
+
+<meta property="og:title" content="Rohan &amp; Neha — Engagement Ceremony">
+<meta property="og:description" content="Sunday, 16 August 2026 · Mauli Veg Restaurant and Banquet Hall, Katraj, Pune">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Mukta:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   PALETTE & TOKENS
+   ============================================================ */
+:root{
+  --maroon:#800000;
+  --maroon-deep:#4a0000;
+  --maroon-ink:#2b0000;
+  --gold:#D4AF37;
+  --gold-bright:#F5E1A4;
+  --gold-deep:#9A7B22;
+  --ivory:#FFFFF0;
+  --ivory-dim:rgba(255,255,240,.72);
+
+  --font-display:'Playfair Display', Georgia, serif;
+  --font-body:'Mukta', system-ui, -apple-system, sans-serif;
+
+  --shell:min(480px, 100%);
+  --ease-out:cubic-bezier(.22,.61,.36,1);
+  --ease-flap:cubic-bezier(.62,.04,.25,1);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+
+html{ -webkit-text-size-adjust:100%; }
+
+body{
+  font-family:var(--font-body);
+  font-weight:300;
+  color:var(--ivory);
+  background:
+    radial-gradient(120% 80% at 50% -10%, #6d0000 0%, var(--maroon-deep) 48%, var(--maroon-ink) 100%)
+    var(--maroon-ink);
+  min-height:100vh;
+  overflow-x:hidden;
+  line-height:1.65;
+  letter-spacing:.01em;
+}
+
+/* Page is locked behind the envelope gate until it is opened. */
+body:not(.opened){ overflow:hidden; height:100vh; }
+
+img,svg{max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+a{color:inherit}
+
+::selection{background:var(--gold);color:var(--maroon-ink)}
+
+/* ============================================================
+   AMBIENT MANDALA BACKDROP
+   ============================================================ */
+.mandala-layer{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  pointer-events:none;
+  z-index:0;
+}
+.mandala-layer svg{
+  width:min(148vw, 940px);
+  height:auto;
+  opacity:.16;
+  transform-origin:50% 50%;
+  animation:mandala-breathe 26s ease-in-out infinite;
+  will-change:transform,opacity;
+}
+.mandala-layer.slow svg{ animation-duration:38s; opacity:.11 }
+
+@keyframes mandala-breathe{
+  0%,100%{ transform:scale(1) rotate(0deg); opacity:.13 }
+  50%    { transform:scale(1.07) rotate(6deg); opacity:.2 }
+}
+
+/* ============================================================
+   ENVELOPE GATE
+   ============================================================ */
+.gate{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:grid;
+  place-items:center;
+  background:
+    radial-gradient(110% 75% at 50% 40%, #700000 0%, var(--maroon-deep) 55%, var(--maroon-ink) 100%);
+  transition:opacity .7s var(--ease-out), visibility .7s;
+}
+.gate.gone{ opacity:0; visibility:hidden; pointer-events:none }
+
+.gate-inner{
+  position:relative;
+  z-index:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:34px;
+  padding:24px;
+  text-align:center;
+}
+
+.gate-kicker{
+  font-family:var(--font-display);
+  font-style:italic;
+  font-size:clamp(.9rem,3.6vw,1.05rem);
+  color:var(--gold);
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  margin:0;
+  opacity:0;
+  animation:rise-in .9s var(--ease-out) .25s both;
+}
+
+/* -- envelope object -- */
+.env{
+  position:relative;
+  width:min(78vw, 306px);
+  aspect-ratio:3/2;
+  perspective:1100px;
+  opacity:0;
+  animation:rise-in 1s var(--ease-out) .45s both;
+  transition:transform .8s var(--ease-out), opacity .6s ease;
+}
+.gate.opening .env{ transform:scale(1.06) translateY(-6px) }
+
+.env-body,
+.env-pocket,
+.env-flap{ position:absolute; inset:0 }
+
+.env-body{
+  background:linear-gradient(160deg,#8d0b0b,#5e0000 62%,#480000);
+  border:1.5px solid var(--gold-deep);
+  border-radius:6px;
+  box-shadow:0 26px 60px -18px rgba(0,0,0,.75), inset 0 0 40px rgba(0,0,0,.35);
+}
+
+/* The card that lifts out of the envelope once the flap is open. */
+.env-card{
+  position:absolute;
+  left:7%;
+  right:7%;
+  top:8%;
+  bottom:8%;
+  background:linear-gradient(170deg,#FFFFF0,#f4ead0);
+  border-radius:4px;
+  box-shadow:0 -6px 22px -6px rgba(0,0,0,.5);
+  z-index:2;
+  transform:translateY(0) scale(.97);
+  opacity:0;
+  transition:transform 1s var(--ease-out), opacity .5s ease;
+  display:grid;
+  place-items:center;
+}
+.env-card::after{
+  content:'';
+  position:absolute;
+  inset:7px;
+  border:1px solid rgba(154,123,34,.55);
+  border-radius:2px;
+}
+.gate.lifting .env-card{ transform:translateY(-46%) scale(1); opacity:1 }
+
+.env-card-glyph{ width:44%; color:var(--maroon); opacity:.5 }
+
+/* Front pocket: two folds meeting in a V.
+   Gold edge = parent filled gold, child inset by 1.5px on the same clip. */
+/* The pocket's V apex and the flap's tip must sit at the same 56% mark,
+   or an uncovered wedge opens at the top corners while the card lifts. */
+.env-pocket{
+  z-index:3;
+  background:var(--gold-deep);
+  clip-path:polygon(0 100%, 0 0, 50% 56%, 100% 0, 100% 100%);
+  border-radius:0 0 6px 6px;
+}
+.env-pocket::after{
+  content:'';
+  position:absolute;
+  inset:1.5px;
+  background:linear-gradient(180deg,#7a0505,#5a0000);
+  clip-path:polygon(0 100%, 0 0, 50% 56%, 100% 0, 100% 100%);
+  box-shadow:inset 0 12px 24px -14px rgba(0,0,0,.8);
+}
+
+/* Top flap folds up and away on open. */
+.env-flap{
+  z-index:4;
+  height:56%;
+  inset:0 0 auto 0;
+  background:var(--gold-deep);
+  clip-path:polygon(0 0, 100% 0, 50% 100%);
+  transform-origin:top center;
+  transform:rotateX(0deg);
+  transition:transform 1s var(--ease-flap);
+  backface-visibility:visible;
+}
+.env-flap::after{
+  content:'';
+  position:absolute;
+  inset:1.5px;
+  background:linear-gradient(180deg,#960f0f,#6b0000);
+  clip-path:polygon(0 0, 100% 0, 50% 100%);
+}
+.gate.opening .env-flap{ transform:rotateX(-168deg) }
+
+/* -- wax seal -- */
+.seal{
+  position:absolute;
+  left:50%;
+  top:52%;
+  width:31%;
+  aspect-ratio:1;
+  translate:-50% -50%;
+  z-index:6;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  transition:transform .45s var(--ease-out), opacity .4s ease;
+  -webkit-tap-highlight-color:transparent;
+  animation:seal-pulse 2.8s ease-in-out infinite;
+}
+.seal svg{ width:100%; height:100%; overflow:visible; display:block }
+.seal .seal-glyph{ color:var(--gold-bright) }
+
+/* Centring lives in the `translate` property so `transform` is free for
+   scale/rotate — mixing both here would double the offset. */
+.gate.opening .seal{ transform:scale(1.5) rotate(12deg); opacity:0; animation:none }
+
+@keyframes seal-pulse{
+  0%,100%{ transform:scale(1) }
+  50%    { transform:scale(1.045) }
+}
+
+.gate-hint{
+  margin:0;
+  font-size:.82rem;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--ivory-dim);
+  opacity:0;
+  animation:rise-in .9s var(--ease-out) 1.1s both, hint-bob 2.6s ease-in-out 2s infinite;
+}
+.gate.opening .gate-hint{ opacity:0; transition:opacity .3s; animation:none }
+
+@keyframes hint-bob{
+  0%,100%{ transform:translateY(0) }
+  50%    { transform:translateY(5px) }
+}
+
+/* ============================================================
+   SHARED REVEAL ANIMATIONS
+   ============================================================ */
+@keyframes rise-in{
+  from{ opacity:0; transform:translateY(26px) }
+  to  { opacity:1; transform:none }
+}
+@keyframes fade-in{ from{opacity:0} to{opacity:1} }
+
+/* Hero children stagger only after the envelope is opened. */
+.stagger{ opacity:0 }
+body.opened .stagger{
+  animation:rise-in 1s var(--ease-out) both;
+  animation-delay:var(--d,0ms);
+}
+
+.on-scroll{
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity .85s var(--ease-out), transform .85s var(--ease-out);
+}
+.on-scroll.in{ opacity:1; transform:none }
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.shell{
+  position:relative;
+  z-index:1;
+  width:var(--shell);
+  margin:0 auto;
+  padding:0 22px 72px;
+}
+
+.hero{
+  position:relative;
+  min-height:100svh;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  padding:64px 0 48px;
+  overflow:hidden;
+}
+.hero-inner{ position:relative; z-index:1; width:100% }
+
+.greeting{
+  font-family:var(--font-display);
+  font-size:clamp(1.05rem,4.6vw,1.35rem);
+  font-weight:500;
+  color:var(--gold);
+  letter-spacing:.1em;
+  margin:0 0 6px;
+}
+.greeting-sub{
+  font-size:.72rem;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+  color:var(--ivory-dim);
+  margin:0 0 30px;
+}
+
+.ganesha-crest{ width:clamp(84px,26vw,112px); color:var(--gold); margin:0 auto 22px; display:block }
+
+.salutation{
+  font-family:var(--font-display);
+  font-style:italic;
+  font-size:.98rem;
+  color:var(--ivory-dim);
+  margin:0 0 20px;
+}
+.salutation strong{ color:var(--ivory); font-style:normal; font-weight:500 }
+
+.occasion{
+  font-size:.73rem;
+  letter-spacing:.18em;
+  line-height:1.95;
+  text-transform:uppercase;
+  color:var(--ivory-dim);
+  margin:0 auto 18px;
+  max-width:28ch;
+}
+
+/* Gold foil sheen across the couple's names. */
+.names{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:clamp(2.85rem,15vw,4.4rem);
+  line-height:1.06;
+  margin:0;
+  background:linear-gradient(100deg,
+    var(--gold-deep) 0%, var(--gold) 22%, #FFF7DA 42%,
+    var(--gold) 58%, var(--gold-deep) 82%, var(--gold) 100%);
+  background-size:280% 100%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  -webkit-text-fill-color:transparent;
+}
+body.opened .names{
+  animation:
+    rise-in 1.1s var(--ease-out) var(--d,0ms) both,
+    sheen 7s linear var(--d,0ms) infinite;
+}
+/* Needs its own text-fill: `opacity` here would give the span its own
+   compositing layer and the parent's clipped background would not reach it. */
+.names .amp{
+  display:block;
+  font-size:.42em;
+  font-style:italic;
+  font-weight:400;
+  margin:.06em 0 .02em;
+  color:var(--gold);
+  -webkit-text-fill-color:var(--gold);
+}
+@keyframes sheen{
+  0%  { background-position:190% 0 }
+  100%{ background-position:-90% 0 }
+}
+
+/* ============================================================
+   ORNAMENTS
+   ============================================================ */
+.divider{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  margin:44px auto;
+  color:var(--gold);
+  opacity:.85;
+}
+.divider::before,.divider::after{
+  content:'';
+  height:1px;
+  flex:1;
+  max-width:74px;
+  background:linear-gradient(90deg,transparent,currentColor);
+}
+.divider::after{ background:linear-gradient(270deg,transparent,currentColor) }
+.divider svg{ width:26px; flex:none }
+
+.scroll-cue{
+  position:absolute;
+  left:50%;
+  bottom:18px;
+  translate:-50% 0;
+  z-index:1;
+  font-size:.62rem;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--ivory-dim);
+}
+body.opened .scroll-cue{
+  animation:
+    rise-in 1s var(--ease-out) var(--d,0ms) both,
+    hint-bob 2.6s ease-in-out 2.4s infinite;
+}
+
+/* ============================================================
+   COUNTDOWN
+   ============================================================ */
+.section-label{
+  font-size:.68rem;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+  color:var(--gold);
+  text-align:center;
+  margin:0 0 18px;
+}
+
+.countdown{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  max-width:400px;
+  margin:0 auto;
+}
+.cd-cell{
+  padding:14px 4px 11px;
+  text-align:center;
+  border:1px solid rgba(212,175,55,.34);
+  border-radius:8px;
+  background:linear-gradient(170deg,rgba(212,175,55,.11),rgba(212,175,55,.02));
+}
+.cd-num{
+  display:block;
+  font-family:var(--font-display);
+  font-size:clamp(1.5rem,7vw,2rem);
+  font-weight:600;
+  color:var(--gold);
+  font-variant-numeric:tabular-nums;
+  line-height:1;
+}
+.cd-label{
+  display:block;
+  margin-top:7px;
+  font-size:.58rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--ivory-dim);
+}
+.countdown-done{
+  text-align:center;
+  font-family:var(--font-display);
+  font-style:italic;
+  font-size:1.3rem;
+  color:var(--gold);
+  margin:0;
+}
+
+/* ============================================================
+   SCRATCH CARD
+   ============================================================ */
+/* The "scratch the foil" instruction is stale once the foil is gone. */
+#sagaiLabel{ transition:opacity .6s ease }
+body.card-open #sagaiLabel{ opacity:0 }
+
+.card-wrap{
+  position:relative;
+  margin:0 auto;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 22px 54px -22px rgba(0,0,0,.85);
+  isolation:isolate;
+}
+
+.details{
+  position:relative;
+  padding:30px 22px 26px;
+  text-align:center;
+  background:
+    radial-gradient(120% 90% at 50% 0%, rgba(212,175,55,.16), transparent 62%),
+    linear-gradient(170deg,#6b0000,#440000);
+  border:1px solid rgba(212,175,55,.4);
+  border-radius:12px;
+}
+
+.detail-block + .detail-block{
+  margin-top:20px;
+  padding-top:20px;
+  border-top:1px solid rgba(212,175,55,.24);
+}
+.detail-key{
+  font-size:.6rem;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin:0 0 7px;
+}
+.detail-date{
+  font-family:var(--font-display);
+  font-size:clamp(1.5rem,7.4vw,2rem);
+  font-weight:600;
+  color:var(--ivory);
+  margin:0;
+  line-height:1.18;
+}
+.detail-day{
+  font-family:var(--font-display);
+  font-style:italic;
+  color:var(--gold);
+  font-size:1rem;
+  margin:4px 0 0;
+}
+.detail-venue{
+  font-size:1.02rem;
+  font-weight:400;
+  color:var(--ivory);
+  margin:0;
+  line-height:1.5;
+}
+.detail-venue span{ display:block; color:var(--ivory-dim); font-size:.9rem; margin-top:3px }
+
+.detail-actions{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-top:22px;
+}
+
+/* -- foil overlay -- */
+#foil{
+  position:absolute;
+  inset:0;
+  z-index:3;
+  display:block;
+  width:100%;
+  height:100%;
+  /* pan-y, not none: a vertical finger-drag still scrolls the page, so the
+     card can never trap the scroll. Sideways drags come through as scratches. */
+  touch-action:pan-y;
+  cursor:grab;
+  transition:opacity .8s ease;
+}
+#foil.spent{ opacity:0; pointer-events:none }
+
+/* Moving highlight that sits over the untouched foil. */
+.foil-sheen{
+  position:absolute;
+  inset:0;
+  z-index:4;
+  pointer-events:none;
+  background:linear-gradient(105deg,transparent 34%,rgba(255,255,255,.5) 50%,transparent 66%);
+  background-size:260% 100%;
+  mix-blend-mode:overlay;
+  animation:sheen 4.5s linear infinite;
+  transition:opacity .5s ease;
+}
+.card-wrap.touched .foil-sheen,
+.card-wrap.revealed .foil-sheen{ opacity:0 }
+
+.reveal-fallback{
+  display:block;
+  margin:14px auto 0;
+  font-size:.72rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--ivory-dim);
+  text-decoration:underline;
+  text-underline-offset:4px;
+  transition:opacity .4s ease, color .25s ease;
+}
+.reveal-fallback:hover,.reveal-fallback:focus-visible{ color:var(--gold) }
+.card-wrap.revealed ~ .reveal-fallback{ opacity:0; pointer-events:none }
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  width:100%;
+  padding:14px 20px;
+  font-family:var(--font-body);
+  font-size:.83rem;
+  font-weight:600;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  text-decoration:none;
+  border-radius:999px;
+  transition:transform .22s var(--ease-out), box-shadow .22s ease, background .22s ease;
+}
+.btn svg{ width:17px; height:17px; flex:none }
+.btn:active{ transform:scale(.975) }
+
+.btn-gold{
+  background:linear-gradient(135deg,var(--gold-bright),var(--gold) 42%,var(--gold-deep));
+  color:var(--maroon-ink);
+  box-shadow:0 10px 26px -12px rgba(212,175,55,.85);
+}
+.btn-gold:hover{ box-shadow:0 14px 32px -12px rgba(212,175,55,1) }
+
+.btn-ghost{
+  border:1px solid rgba(212,175,55,.5);
+  color:var(--gold);
+  background:rgba(212,175,55,.06);
+}
+.btn-ghost:hover{ background:rgba(212,175,55,.14) }
+
+/* ============================================================
+   RSVP
+   ============================================================ */
+.rsvp{ text-align:center; padding:8px 0 0 }
+.rsvp-title{
+  font-family:var(--font-display);
+  font-size:clamp(1.6rem,8vw,2.1rem);
+  font-weight:600;
+  color:var(--gold);
+  margin:0 0 10px;
+}
+.rsvp-copy{
+  color:var(--ivory-dim);
+  font-size:.97rem;
+  margin:0 auto 24px;
+  max-width:31ch;
+}
+.rsvp-actions{ display:flex; flex-direction:column; gap:11px; max-width:330px; margin:0 auto }
+.rsvp-note{
+  margin:20px 0 0;
+  font-size:.78rem;
+  letter-spacing:.04em;
+  color:var(--ivory-dim);
+}
+.rsvp-note a{ color:var(--gold); text-decoration:none; border-bottom:1px solid rgba(212,175,55,.45) }
+
+.blessing{
+  margin:56px auto 0;
+  text-align:center;
+  font-family:var(--font-display);
+  font-style:italic;
+  font-size:1.02rem;
+  color:var(--gold);
+  opacity:.9;
+  max-width:30ch;
+  line-height:1.7;
+}
+.signoff{
+  margin:14px 0 0;
+  text-align:center;
+  font-size:.66rem;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--ivory-dim);
+}
+
+/* ============================================================
+   AUDIO TOGGLE  (hidden unless AUDIO_URL is configured)
+   ============================================================ */
+.audio-toggle{
+  position:fixed;
+  top:calc(14px + env(safe-area-inset-top));
+  right:14px;
+  z-index:60;
+  width:42px;
+  height:42px;
+  display:none;
+  place-items:center;
+  border:1px solid rgba(212,175,55,.45);
+  border-radius:50%;
+  color:var(--gold);
+  background:rgba(43,0,0,.62);
+  backdrop-filter:blur(6px);
+  transition:transform .2s var(--ease-out), background .2s ease;
+}
+.audio-toggle.live{ display:grid }
+.audio-toggle:active{ transform:scale(.92) }
+.audio-toggle svg{ width:19px; height:19px }
+
+/* ============================================================
+   PARTICLE CANVAS
+   ============================================================ */
+#fx{
+  position:fixed;
+  inset:0;
+  z-index:80;
+  pointer-events:none;
+}
+
+.sr-only{
+  position:absolute;
+  width:1px;height:1px;
+  padding:0;margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;border:0;
+}
+
+:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; border-radius:4px }
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+  }
+  .stagger,.on-scroll{ opacity:1 !important; transform:none !important }
+  .mandala-layer svg{ animation:none }
+}
+</style>
+</head>
+<body>
+
+<!-- ======================= ENVELOPE GATE ======================= -->
+<div class="gate" id="gate">
+  <div class="mandala-layer slow" data-mandala></div>
+  <div class="gate-inner">
+    <p class="gate-kicker">An Invitation</p>
+
+    <div class="env" id="env">
+      <div class="env-body"></div>
+
+      <div class="env-card">
+        <svg class="env-card-glyph" viewBox="0 0 100 100" aria-hidden="true">
+          <use href="#ganesha"></use>
+        </svg>
+      </div>
+
+      <div class="env-pocket"></div>
+      <div class="env-flap"></div>
+
+      <button class="seal" id="seal" aria-label="Open the invitation">
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+          <g id="seal-scallops" fill="#6b0000"></g>
+          <circle cx="50" cy="50" r="36" fill="#7d0505"/>
+          <circle cx="50" cy="50" r="36" fill="url(#sealShine)"/>
+          <circle cx="50" cy="50" r="31" fill="none" stroke="#D4AF37" stroke-width="1.1" opacity=".8"/>
+          <g class="seal-glyph" transform="translate(50 50) scale(.52) translate(-50 -50)">
+            <use href="#ganesha"></use>
+          </g>
+          <defs>
+            <radialGradient id="sealShine" cx="34%" cy="28%" r="78%">
+              <stop offset="0" stop-color="#c22b2b" stop-opacity=".85"/>
+              <stop offset="1" stop-color="#3d0000" stop-opacity=".65"/>
+            </radialGradient>
+          </defs>
+        </svg>
+      </button>
+    </div>
+
+    <p class="gate-hint">Tap the seal</p>
+  </div>
+</div>
+
+<!-- ======================= AUDIO TOGGLE ======================= -->
+<button class="audio-toggle" id="audioToggle" aria-label="Toggle music" aria-pressed="false">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path id="ico-on" d="M4 9v6h3.5L13 20V4L7.5 9H4zM16.5 8.5a5 5 0 0 1 0 7M19.5 6a8.5 8.5 0 0 1 0 12"/>
+    <path id="ico-off" d="M4 9v6h3.5L13 20V4L7.5 9H4zM17 10l4 4M21 10l-4 4" style="display:none"/>
+  </svg>
+</button>
+
+<!-- ======================= HERO ======================= -->
+<header class="hero">
+  <div class="mandala-layer" data-mandala></div>
+
+  <div class="hero-inner shell">
+    <svg class="ganesha-crest stagger" style="--d:120ms" viewBox="0 0 100 100" aria-hidden="true">
+      <use href="#ganesha"></use>
+    </svg>
+
+    <h1 class="greeting stagger" style="--d:300ms">॥ श्री गणेशाय नमः ॥</h1>
+    <p class="greeting-sub stagger" style="--d:440ms">Shree Ganeshay Namah</p>
+
+    <p class="salutation stagger" style="--d:600ms">Dear <strong id="guestName">Guest</strong>,</p>
+    <p class="occasion stagger" style="--d:720ms">Together with our families, we invite you to the engagement of</p>
+
+    <p class="names stagger" style="--d:860ms">
+      Rohan
+      <span class="amp">&amp;</span>
+      Neha
+    </p>
+  </div>
+
+  <span class="scroll-cue stagger" style="--d:1500ms">Scroll</span>
+</header>
+
+<main class="shell">
+
+  <!-- ======================= COUNTDOWN ======================= -->
+  <section class="on-scroll" aria-labelledby="cdLabel">
+    <p class="section-label" id="cdLabel">Counting down to the day</p>
+    <div class="countdown" id="countdown" role="timer" aria-live="off">
+      <div class="cd-cell"><span class="cd-num" data-cd="days">--</span><span class="cd-label">Days</span></div>
+      <div class="cd-cell"><span class="cd-num" data-cd="hours">--</span><span class="cd-label">Hours</span></div>
+      <div class="cd-cell"><span class="cd-num" data-cd="minutes">--</span><span class="cd-label">Minutes</span></div>
+      <div class="cd-cell"><span class="cd-num" data-cd="seconds">--</span><span class="cd-label">Seconds</span></div>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="currentColor"><use href="#lotus"></use></svg>
+  </div>
+
+  <!-- ======================= SCRATCH CARD ======================= -->
+  <section class="on-scroll" aria-labelledby="sagaiLabel">
+    <p class="section-label" id="sagaiLabel">Scratch the foil to reveal the details</p>
+
+    <div class="card-wrap" id="cardWrap">
+      <div class="details" id="details">
+        <div class="detail-block">
+          <p class="detail-key">Sagai Ceremony</p>
+          <p class="detail-date">16 August 2026</p>
+          <p class="detail-day">Sunday</p>
+          <p class="detail-day" id="detailTime" hidden></p>
+        </div>
+
+        <div class="detail-block">
+          <p class="detail-key">Venue</p>
+          <p class="detail-venue">
+            Mauli Veg Restaurant and Banquet Hall
+            <span>Katraj, Pune</span>
+          </p>
+        </div>
+
+        <div class="detail-actions">
+          <a class="btn btn-gold"
+             href="https://maps.app.goo.gl/fg9mexdWh6X8wakx8"
+             target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>
+            </svg>
+            View on Google Maps
+          </a>
+
+          <button class="btn btn-ghost" id="calBtn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 11h18M12 15v3M10.5 16.5h3"/>
+            </svg>
+            Add to Calendar
+          </button>
+        </div>
+      </div>
+
+      <canvas id="foil" role="img" aria-label="Gold foil covering the event details. Scratch it, or use the reveal link below."></canvas>
+      <div class="foil-sheen" aria-hidden="true"></div>
+    </div>
+
+    <button class="reveal-fallback" id="revealBtn" type="button">Reveal details instead</button>
+  </section>
+
+  <div class="divider" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="currentColor"><use href="#lotus"></use></svg>
+  </div>
+
+  <!-- ======================= RSVP ======================= -->
+  <section class="rsvp on-scroll" aria-labelledby="rsvpTitle">
+    <h2 class="rsvp-title" id="rsvpTitle">Will you join us?</h2>
+    <p class="rsvp-copy">Your presence would mean the world to us. Do let us know so we can keep a seat waiting.</p>
+
+    <div class="rsvp-actions">
+      <a class="btn btn-gold" id="waBtn" href="#" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.86 9.86 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.1c-.24.68-1.4 1.3-1.93 1.35-.53.06-1.02.08-1.77-.2-.44-.16-1.02-.35-1.76-.67-2.6-1.12-4.3-3.74-4.43-3.91-.13-.18-1.06-1.41-1.06-2.69 0-1.28.67-1.91.9-2.17.24-.26.52-.33.7-.33h.5c.16 0 .38-.06.58.44.2.51.7 1.75.76 1.87.06.13.1.28.01.45-.09.18-.31.48-.53.72-.1.11-.24.23-.1.46.13.24.6.98 1.28 1.59.88.78 1.6 1.03 1.83 1.15.23.11.37.1.5-.06.14-.15.6-.7.76-.94.16-.24.32-.2.54-.12.22.08 1.4.66 1.64.78.24.12.4.18.46.28.06.1.06.6-.18 1.28z"/>
+        </svg>
+        RSVP on WhatsApp
+      </a>
+
+      <button class="btn btn-ghost" id="shareBtn" type="button" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M12 16V3M8 7l4-4 4 4"/>
+        </svg>
+        Share this invite
+      </button>
+    </div>
+
+    <p class="rsvp-note">Or call us at <a href="tel:+919545707666">+91 95457 07666</a></p>
+  </section>
+
+  <p class="blessing on-scroll">May Shree Ganesha bless this new beginning with joy, prosperity and love.</p>
+  <p class="signoff on-scroll">Rohan &amp; Neha · Pune · 2026</p>
+
+</main>
+
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<!-- ======================= SVG SPRITE ======================= -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- Stylised line-art Ganesha motif -->
+    <g id="ganesha" fill="none" stroke="currentColor" stroke-width="2.1"
+       stroke-linecap="round" stroke-linejoin="round">
+      <path d="M50 6c2.8 4.4 5.6 6.4 5.6 9.6H44.4C44.4 12.4 47.2 10.4 50 6z"/>
+      <path d="M42.4 17.2c2.4-1.6 4.8-2.4 7.6-2.4s5.2.8 7.6 2.4"/>
+      <path d="M50 20.4c-11.6 0-19.4 9.2-19.4 20.4 0 12.4 8.6 21.6 19.4 21.6s19.4-9.2 19.4-21.6c0-11.2-7.8-20.4-19.4-20.4z"/>
+      <path d="M31.6 31.2C22.4 26.8 13 30.4 11.4 40.4 9.8 50.4 18 57.6 26.4 55.2"/>
+      <path d="M68.4 31.2C77.6 26.8 87 30.4 88.6 40.4 90.2 50.4 82 57.6 73.6 55.2"/>
+      <path d="M50 42c0 10-4.4 15.6-8.4 20-4 4.4-2 11.6 5.2 11.6 4.8 0 6.8-3.2 6-6.8"/>
+      <path d="M40 52.4c-2.4 3.2-4.8 4.8-8 5.2M60 52.4c2.4 3.2 4.8 4.8 8 5.2"/>
+      <path d="M40.4 38.4c2.4-2.4 5.2-2.4 7.2 0M52.4 38.4c2-2.4 4.8-2.4 7.2 0"/>
+      <path d="M50 25.6v5.6"/>
+      <path d="M28 68c8 8.8 16 12.4 22 12.4S64 76.8 72 68"/>
+      <path d="M50 84.4v9.2M42 90.4h16" stroke-width="1.7"/>
+    </g>
+
+    <!-- Lotus ornament used in dividers -->
+    <path id="lotus" d="M12 4c1.9 2.6 2.9 5 2.9 7.2 0 1.3-.3 2.4-1 3.5 2-.4 3.7-1.5 5.1-3.3-.2 3.2-1.6 5.5-4.2 6.9 1.9.5 3.6.3 5.2-.6-1.6 2.6-4.6 4-9 4.3-4.4-.3-7.4-1.7-9-4.3 1.6.9 3.3 1.1 5.2.6-2.6-1.4-4-3.7-4.2-6.9 1.4 1.8 3.1 2.9 5.1 3.3-.7-1.1-1-2.2-1-3.5C9.1 9 10.1 6.6 12 4z"/>
+  </defs>
+</svg>
+
+<script>
+(function(){
+'use strict';
+
+/* ============================================================
+   CONFIGURATION  —  edit these five values, nothing else
+   ============================================================ */
+
+// Ambient music. Leave empty ('') and the speaker button stays hidden.
+// Point it at a short, looping instrumental (shehnai / sitar) hosted anywhere
+// that allows cross-origin playback.
+var AUDIO_URL = '';
+
+// Ceremony start time, 24h 'HH:MM' in IST. Leave empty ('') for an all-day
+// event: the countdown targets midnight and the calendar file has no time.
+// Filling it in updates the countdown, the .ics file and the card together.
+var EVENT_TIME = '';
+
+var EVENT_DATE   = '2026-08-16';                                          // YYYY-MM-DD, IST
+var WHATSAPP_NUM = '919545707666';                                        // country code, no '+'
+var MAPS_URL     = 'https://maps.app.goo.gl/fg9mexdWh6X8wakx8';
+
+var VENUE   = 'Mauli Veg Restaurant and Banquet Hall, Katraj, Pune';
+var TITLE   = 'Rohan & Neha — Engagement Ceremony';
+var IST     = '+05:30';
+
+/* ============================================================
+   HELPERS
+   ============================================================ */
+var $  = function(s, r){ return (r || document).querySelector(s); };
+var $$ = function(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function pad(n){ return n < 10 ? '0' + n : '' + n; }
+
+/* ============================================================
+   MANDALA  —  generated so the markup stays small
+   ============================================================ */
+function petalPath(r0, r1, w){
+  var mid = (r0 + r1) / 2;
+  return 'M0 ' + -r0 +
+         ' C' + w + ' ' + -mid + ' ' + w + ' ' + -mid + ' 0 ' + -r1 +
+         ' C' + -w + ' ' + -mid + ' ' + -w + ' ' + -mid + ' 0 ' + -r0 + 'Z';
+}
+
+function mandalaSVG(){
+  var C = 300, out = '';
+
+  // Concentric guide rings.
+  [70, 118, 168, 214, 256, 288].forEach(function(r, i){
+    out += '<circle cx="' + C + '" cy="' + C + '" r="' + r + '"' +
+           ' stroke-width="' + (i % 2 ? .7 : 1.3) + '" stroke-dasharray="' +
+           (i === 3 ? '3 7' : 'none') + '"/>';
+  });
+
+  // Petal rings, each rotated into place.
+  var rings = [
+    { n:8,  r0:66,  r1:126, w:30 },
+    { n:16, r0:122, r1:176, w:19 },
+    { n:24, r0:172, r1:216, w:13 },
+    { n:32, r0:214, r1:252, w:9  },
+    { n:48, r0:258, r1:286, w:6  }
+  ];
+
+  rings.forEach(function(ring){
+    var d = petalPath(ring.r0, ring.r1, ring.w), g = '';
+    for (var i = 0; i < ring.n; i++){
+      g += '<path d="' + d + '" transform="rotate(' + (360 / ring.n * i) + ')"/>';
+    }
+    out += '<g transform="translate(' + C + ' ' + C + ')" stroke-width="1">' + g + '</g>';
+  });
+
+  // Inner bindi.
+  out += '<circle cx="' + C + '" cy="' + C + '" r="26" stroke-width="1.4"/>' +
+         '<circle cx="' + C + '" cy="' + C + '" r="9" fill="#D4AF37" stroke="none"/>';
+
+  return '<svg viewBox="0 0 600 600" fill="none" stroke="#D4AF37" ' +
+         'stroke-linejoin="round" aria-hidden="true">' + out + '</svg>';
+}
+
+(function paintMandalas(){
+  var svg = mandalaSVG();
+  $$('[data-mandala]').forEach(function(el){ el.innerHTML = svg; });
+})();
+
+/* Scalloped rim of the wax seal. */
+(function paintSeal(){
+  var g = $('#seal-scallops');
+  if (!g) return;
+  var n = 22, out = '';
+  for (var i = 0; i < n; i++){
+    var a = Math.PI * 2 / n * i;
+    out += '<circle cx="' + (50 + Math.cos(a) * 36).toFixed(2) +
+                 '" cy="' + (50 + Math.sin(a) * 36).toFixed(2) + '" r="5.4"/>';
+  }
+  g.innerHTML = out;
+})();
+
+/* ============================================================
+   GUEST NAME  —  ?to=Sharma%20Family
+   ============================================================ */
+(function personalise(){
+  var raw = new URLSearchParams(location.search).get('to');
+  if (!raw) return;
+  var name = raw.replace(/[<>{}\\]/g, '').replace(/\s+/g, ' ').trim().slice(0, 42);
+  if (name) $('#guestName').textContent = name;   // textContent, never innerHTML
+})();
+
+/* ============================================================
+   EVENT DATE MODEL
+   ============================================================ */
+var allDay = !EVENT_TIME;
+var targetDate = new Date(EVENT_DATE + 'T' + (EVENT_TIME || '00:00') + ':00' + IST);
+
+if (!allDay){
+  var t = $('#detailTime');
+  var h = parseInt(EVENT_TIME.split(':')[0], 10);
+  var m = EVENT_TIME.split(':')[1];
+  var suffix = h >= 12 ? 'PM' : 'AM';
+  var h12 = h % 12 || 12;
+  t.textContent = h12 + (m === '00' ? '' : ':' + m) + ' ' + suffix + ' onwards';
+  t.hidden = false;
+}
+
+/* ============================================================
+   COUNTDOWN
+   ============================================================ */
+(function countdown(){
+  var box   = $('#countdown');
+  var cells = {
+    days:    $('[data-cd="days"]'),
+    hours:   $('[data-cd="hours"]'),
+    minutes: $('[data-cd="minutes"]'),
+    seconds: $('[data-cd="seconds"]')
+  };
+
+  function tick(){
+    var diff = targetDate.getTime() - Date.now();
+
+    if (diff <= 0){
+      box.outerHTML = '<p class="countdown-done">The day is here — see you there!</p>';
+      clearInterval(timer);
+      return;
+    }
+
+    var s = Math.floor(diff / 1000);
+    cells.days.textContent    = Math.floor(s / 86400);
+    cells.hours.textContent   = pad(Math.floor(s % 86400 / 3600));
+    cells.minutes.textContent = pad(Math.floor(s % 3600 / 60));
+    cells.seconds.textContent = pad(s % 60);
+  }
+
+  tick();
+  var timer = setInterval(tick, 1000);
+})();
+
+/* ============================================================
+   WHATSAPP RSVP
+   ============================================================ */
+(function whatsapp(){
+  var msg = 'Namaste! Thank you for the invitation to Rohan & Neha\'s engagement ' +
+            'on Sunday, 16 August 2026. ';
+  $('#waBtn').href = 'https://wa.me/' + WHATSAPP_NUM + '?text=' + encodeURIComponent(msg);
+})();
+
+/* ============================================================
+   ADD TO CALENDAR  —  .ics built client-side
+   ============================================================ */
+(function calendar(){
+  function stampUTC(d){
+    return d.getUTCFullYear() + pad(d.getUTCMonth() + 1) + pad(d.getUTCDate()) + 'T' +
+           pad(d.getUTCHours()) + pad(d.getUTCMinutes()) + pad(d.getUTCSeconds()) + 'Z';
+  }
+  function dateOnly(iso){ return iso.replace(/-/g, ''); }
+
+  function build(){
+    var start, end;
+
+    if (allDay){
+      var next = new Date(EVENT_DATE + 'T00:00:00Z');
+      next.setUTCDate(next.getUTCDate() + 1);
+      start = 'DTSTART;VALUE=DATE:' + dateOnly(EVENT_DATE);
+      end   = 'DTEND;VALUE=DATE:' + dateOnly(next.toISOString().slice(0, 10));
+    } else {
+      var e = new Date(targetDate.getTime() + 3 * 3600 * 1000);
+      start = 'DTSTART:' + stampUTC(targetDate);
+      end   = 'DTEND:'   + stampUTC(e);
+    }
+
+    return [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//Rohan and Neha//Engagement Invitation//EN',
+      'CALSCALE:GREGORIAN',
+      'METHOD:PUBLISH',
+      'BEGIN:VEVENT',
+      'UID:rohan-neha-engagement-20260816@invite.local',
+      'DTSTAMP:' + stampUTC(new Date()),
+      start,
+      end,
+      'SUMMARY:' + TITLE,
+      'LOCATION:' + VENUE.replace(/,/g, '\\,'),
+      'DESCRIPTION:Engagement ceremony of Rohan and Neha.\\nVenue map: ' + MAPS_URL,
+      'STATUS:CONFIRMED',
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ].join('\r\n');
+  }
+
+  $('#calBtn').addEventListener('click', function(){
+    var blob = new Blob([build()], { type:'text/calendar;charset=utf-8' });
+    var url  = URL.createObjectURL(blob);
+    var a    = document.createElement('a');
+    a.href = url;
+    a.download = 'rohan-neha-engagement.ics';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 1500);
+  });
+})();
+
+/* ============================================================
+   WEB SHARE  —  only shown where supported
+   ============================================================ */
+(function share(){
+  var btn = $('#shareBtn');
+  if (!navigator.share) return;
+  btn.hidden = false;
+  btn.addEventListener('click', function(){
+    navigator.share({
+      title: TITLE,
+      text:  'Rohan & Neha are getting engaged — Sunday, 16 August 2026, Pune.',
+      url:   location.href.split('?')[0]
+    }).catch(function(){ /* user dismissed */ });
+  });
+})();
+
+/* ============================================================
+   PARTICLE BURST  —  marigold petals + gold sparks
+   ============================================================ */
+var fx = (function(){
+  var canvas = $('#fx');
+  var ctx    = canvas.getContext('2d');
+  var parts  = [];
+  var running = false;
+  var dpr = 1;
+
+  function size(){
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width  = Math.floor(innerWidth  * dpr);
+    canvas.height = Math.floor(innerHeight * dpr);
+    canvas.style.width  = innerWidth  + 'px';
+    canvas.style.height = innerHeight + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  size();
+  addEventListener('resize', size);
+
+  var PETAL = ['#F2A93B', '#E8871E', '#F5C542', '#D4AF37', '#FFD97A'];
+
+  function frame(){
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    var alive = 0;
+
+    for (var i = 0; i < parts.length; i++){
+      var p = parts[i];
+      if (p.life <= 0) continue;
+      alive++;
+
+      p.vy += p.g;
+      p.vx *= p.drag;
+      p.vy *= p.drag;
+      p.x  += p.vx;
+      p.y  += p.vy;
+      p.rot += p.spin;
+      p.life -= p.decay;
+
+      ctx.save();
+      ctx.globalAlpha = Math.max(0, Math.min(1, p.life));
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.fillStyle = p.color;
+
+      if (p.kind === 'petal'){
+        ctx.beginPath();
+        ctx.ellipse(0, 0, p.r, p.r * 0.52, 0, 0, Math.PI * 2);
+        ctx.fill();
+      } else {
+        ctx.fillRect(-p.r * .35, -p.r, p.r * .7, p.r * 2);
+      }
+      ctx.restore();
+    }
+
+    if (alive > 0){ requestAnimationFrame(frame); }
+    else { running = false; parts.length = 0; ctx.clearRect(0, 0, innerWidth, innerHeight); }
+  }
+
+  function burst(cx, cy, spread){
+    if (reduceMotion) return;
+
+    var n = 78;
+    for (var i = 0; i < n; i++){
+      var petal = i % 3 !== 0;
+      var ang   = (Math.PI * 2) * (i / n) + (Math.random() - .5) * .5;
+      var speed = (petal ? 3.6 : 6.2) * (.55 + Math.random() * .9);
+
+      parts.push({
+        kind:  petal ? 'petal' : 'spark',
+        x:     cx + (Math.random() - .5) * spread,
+        y:     cy + (Math.random() - .5) * 26,
+        vx:    Math.cos(ang) * speed,
+        vy:    Math.sin(ang) * speed - (petal ? 2.4 : 3.4),
+        g:     petal ? 0.13 : 0.22,
+        drag:  petal ? 0.982 : 0.968,
+        r:     petal ? 4 + Math.random() * 5 : 1.6 + Math.random() * 2,
+        rot:   Math.random() * Math.PI * 2,
+        spin:  (Math.random() - .5) * 0.24,
+        life:  1,
+        decay: petal ? 0.0072 : 0.014,
+        color: petal ? PETAL[i % PETAL.length] : '#FFF0B8'
+      });
+    }
+
+    if (!running){ running = true; requestAnimationFrame(frame); }
+  }
+
+  return { burst: burst };
+})();
+
+/* ============================================================
+   SCRATCH CARD
+   ============================================================ */
+(function scratch(){
+  var wrap    = $('#cardWrap');
+  var details = $('#details');
+  var canvas  = $('#foil');
+  var ctx     = canvas.getContext('2d', { willReadFrequently:true });
+  var fallback = $('#revealBtn');
+
+  var dpr = 1, drawing = false, done = false, last = null, lastCheck = 0;
+
+  /* -- paint the gold foil -- */
+  function paintFoil(){
+    var w = wrap.offsetWidth, h = details.offsetHeight;
+    if (!w || !h) return;
+
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width  = Math.floor(w * dpr);
+    canvas.height = Math.floor(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.clearRect(0, 0, w, h);
+
+    // Brushed metallic base.
+    var base = ctx.createLinearGradient(0, 0, w, h);
+    base.addColorStop(0.00, '#8a6d17');
+    base.addColorStop(0.18, '#D4AF37');
+    base.addColorStop(0.36, '#F7E7AE');
+    base.addColorStop(0.52, '#C9A227');
+    base.addColorStop(0.70, '#F3DC93');
+    base.addColorStop(0.86, '#A8842A');
+    base.addColorStop(1.00, '#D4AF37');
+    ctx.fillStyle = base;
+    ctx.fillRect(0, 0, w, h);
+
+    // Diagonal weave.
+    ctx.save();
+    ctx.globalAlpha = 0.14;
+    ctx.strokeStyle = '#6b5210';
+    ctx.lineWidth = 1;
+    for (var d = -h; d < w + h; d += 7){
+      ctx.beginPath(); ctx.moveTo(d, 0); ctx.lineTo(d + h, h); ctx.stroke();
+    }
+    ctx.globalAlpha = 0.10;
+    ctx.strokeStyle = '#FFF4CC';
+    for (var e = -h; e < w + h; e += 11){
+      ctx.beginPath(); ctx.moveTo(e + h, 0); ctx.lineTo(e, h); ctx.stroke();
+    }
+    ctx.restore();
+
+    // Repeating diamond motif.
+    ctx.save();
+    ctx.globalAlpha = 0.20;
+    ctx.strokeStyle = '#7a5c12';
+    ctx.lineWidth = 1;
+    var step = 30;
+    for (var y = step / 2; y < h + step; y += step){
+      for (var x = step / 2; x < w + step; x += step){
+        ctx.beginPath();
+        ctx.moveTo(x, y - 5); ctx.lineTo(x + 5, y);
+        ctx.lineTo(x, y + 5); ctx.lineTo(x - 5, y);
+        ctx.closePath(); ctx.stroke();
+      }
+    }
+    ctx.restore();
+
+    // Speckle for a foil-like grain.
+    ctx.save();
+    for (var i = 0; i < Math.floor(w * h / 260); i++){
+      ctx.globalAlpha = 0.05 + Math.random() * 0.12;
+      ctx.fillStyle = Math.random() > .5 ? '#FFF8DC' : '#6d5310';
+      ctx.fillRect(Math.random() * w, Math.random() * h, 1.4, 1.4);
+    }
+    ctx.restore();
+
+    // Inner frame.
+    ctx.save();
+    ctx.strokeStyle = 'rgba(90,66,10,.55)';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(8.5, 8.5, w - 17, h - 17);
+    ctx.strokeStyle = 'rgba(255,246,214,.45)';
+    ctx.strokeRect(12.5, 12.5, w - 25, h - 25);
+    ctx.restore();
+
+    // Instruction, centred.
+    ctx.save();
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = 'rgba(74,0,0,.82)';
+    ctx.font = '600 13px Mukta, system-ui, sans-serif';
+    ctx.letterSpacing = '3px';
+    ctx.fillText('✧  SCRATCH TO REVEAL  ✧', w / 2, h / 2 - 9);
+    ctx.font = 'italic 12px "Playfair Display", Georgia, serif';
+    ctx.fillStyle = 'rgba(74,0,0,.6)';
+    ctx.fillText('your invitation awaits', w / 2, h / 2 + 13);
+    ctx.restore();
+
+    ctx.globalCompositeOperation = 'destination-out';
+  }
+
+  /* -- geometry -- */
+  function pointAt(ev){
+    var r = canvas.getBoundingClientRect();
+    return { x: ev.clientX - r.left, y: ev.clientY - r.top };
+  }
+
+  function carve(from, to){
+    var radius = 24;
+    ctx.lineWidth = radius * 2;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.beginPath();
+    ctx.moveTo(from.x, from.y);
+    ctx.lineTo(to.x, to.y);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(to.x, to.y, radius, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  /* -- how much foil is gone (sampled on a coarse grid) -- */
+  function clearedFraction(){
+    var w = canvas.width, h = canvas.height;
+    var data = ctx.getImageData(0, 0, w, h).data;
+    var step = 8, total = 0, gone = 0;
+
+    for (var y = 0; y < h; y += step){
+      for (var x = 0; x < w; x += step){
+        total++;
+        if (data[(y * w + x) * 4 + 3] < 40) gone++;
+      }
+    }
+    return total ? gone / total : 0;
+  }
+
+  function finish(){
+    if (done) return;
+    done = true;
+    drawing = false;
+
+    wrap.classList.add('revealed');
+    document.body.classList.add('card-open');
+    canvas.classList.add('spent');
+    canvas.setAttribute('aria-hidden', 'true');
+    fallback.hidden = true;
+
+    if (navigator.vibrate){ try { navigator.vibrate([18, 40, 26]); } catch(e){} }
+
+    var r = wrap.getBoundingClientRect();
+    fx.burst(r.left + r.width / 2, r.top + r.height / 2, r.width * .8);
+
+    canvas.removeEventListener('pointerdown', onDown);
+    window.removeEventListener('pointermove', onMove);
+    window.removeEventListener('pointerup', onUp);
+    window.removeEventListener('pointercancel', onUp);
+  }
+
+  /* -- pointer handling -- */
+  function onDown(ev){
+    if (done) return;
+    drawing = true;
+    wrap.classList.add('touched');
+    last = pointAt(ev);
+    carve(last, last);
+    if (canvas.setPointerCapture){ try { canvas.setPointerCapture(ev.pointerId); } catch(e){} }
+    ev.preventDefault();
+  }
+
+  function onMove(ev){
+    if (!drawing || done) return;
+    var p = pointAt(ev);
+    carve(last || p, p);
+    last = p;
+
+    var now = Date.now();
+    if (now - lastCheck > 260){
+      lastCheck = now;
+      if (clearedFraction() >= 0.5) finish();
+    }
+    ev.preventDefault();
+  }
+
+  function onUp(){
+    if (!drawing || done) return;
+    drawing = false;
+    last = null;
+    if (clearedFraction() >= 0.5) finish();
+  }
+
+  canvas.addEventListener('pointerdown', onDown);
+  window.addEventListener('pointermove', onMove, { passive:false });
+  window.addEventListener('pointerup', onUp);
+  window.addEventListener('pointercancel', onUp);
+
+  fallback.addEventListener('click', finish);
+
+  /* -- sizing -- */
+  paintFoil();
+
+  var resizeTimer;
+  addEventListener('resize', function(){
+    if (done) return;
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(paintFoil, 180);
+  });
+
+  // Fonts can land after first paint and change the card height.
+  if (document.fonts && document.fonts.ready){
+    document.fonts.ready.then(function(){ if (!done) paintFoil(); });
+  }
+})();
+
+/* ============================================================
+   SCROLL REVEALS
+   ============================================================ */
+(function scrollReveals(){
+  var items = $$('.on-scroll');
+
+  if (!('IntersectionObserver' in window) || reduceMotion){
+    items.forEach(function(el){ el.classList.add('in'); });
+    return;
+  }
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('in');
+      io.unobserve(entry.target);
+    });
+  }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
+
+  items.forEach(function(el){ io.observe(el); });
+})();
+
+/* ============================================================
+   AMBIENT AUDIO
+   ============================================================ */
+var audio = (function(){
+  var btn = $('#audioToggle');
+  if (!AUDIO_URL){ return { unlock: function(){} }; }
+
+  var el = new Audio(AUDIO_URL);
+  el.loop = true;
+  el.volume = 0.32;
+  el.preload = 'auto';
+
+  var on = false;
+  btn.classList.add('live');
+
+  function paint(){
+    $('#ico-on').style.display  = on ? '' : 'none';
+    $('#ico-off').style.display = on ? 'none' : '';
+    btn.setAttribute('aria-pressed', String(on));
+    btn.setAttribute('aria-label', on ? 'Mute music' : 'Play music');
+  }
+  paint();
+
+  btn.addEventListener('click', function(){
+    if (on){ el.pause(); on = false; }
+    else { el.play().then(function(){ on = true; paint(); }).catch(function(){}); return; }
+    paint();
+  });
+
+  return {
+    // Called from the envelope tap, which is the gesture browsers require.
+    unlock: function(){
+      el.play().then(function(){ on = true; paint(); }).catch(function(){});
+    }
+  };
+})();
+
+/* ============================================================
+   ENVELOPE GATE  —  the tap that starts everything
+   ============================================================ */
+(function gate(){
+  var el   = $('#gate');
+  var seal = $('#seal');
+  var opened = false;
+
+  function open(){
+    if (opened) return;
+    opened = true;
+
+    audio.unlock();
+    if (navigator.vibrate){ try { navigator.vibrate(14); } catch(e){} }
+
+    if (reduceMotion){
+      el.classList.add('gone');
+      document.body.classList.add('opened');
+      setTimeout(function(){ el.remove(); }, 60);
+      return;
+    }
+
+    el.classList.add('opening');                                  // seal pops, flap folds up
+    setTimeout(function(){ el.classList.add('lifting'); },  620);  // card rises out
+    setTimeout(function(){
+      el.classList.add('gone');
+      document.body.classList.add('opened');                      // hero stagger fires
+    }, 1450);
+    setTimeout(function(){ el.remove(); }, 2250);
+  }
+
+  seal.addEventListener('click', open);
+  el.addEventListener('click', open);
+  el.addEventListener('keydown', function(ev){
+    if (ev.key === 'Enter' || ev.key === ' '){ ev.preventDefault(); open(); }
+  });
+})();
+
+})();
+</script>
+</body>
+</html>
