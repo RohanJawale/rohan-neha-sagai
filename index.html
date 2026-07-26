@@ -887,12 +887,12 @@ body.card-open #sagaiLabel{ opacity:0 }
   flex-shrink:0;
   transform-style:preserve-3d;
   opacity:0;
-  animation:fade-in 1s ease-out .3s both;
+  animation:fade-in 1s ease-out .3s both, symbol-rotate 6s linear infinite;
+  animation-delay:.3s, 0s;
 }
 .swaminarayan-symbol svg{
   width:100%;
   height:100%;
-  animation:symbol-rotate 6s linear infinite;
   filter:drop-shadow(0 0 18px rgba(245,138,7,.35));
 }
 @keyframes symbol-rotate{
