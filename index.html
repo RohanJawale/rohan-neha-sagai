@@ -871,6 +871,48 @@ body.card-open #sagaiLabel{ opacity:0 }
 }
 .btn-ghost:hover{ background:rgba(212,175,55,.14) }
 
+.swaminarayan-section{
+  margin:64px auto 0;
+  padding:40px 20px;
+  text-align:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:28px;
+}
+.swaminarayan-symbol{
+  width:80px;
+  height:110px;
+  flex-shrink:0;
+  perspective:1200px;
+  opacity:0;
+  animation:fade-in 1s ease-out .3s both;
+}
+.swaminarayan-symbol svg{
+  width:100%;
+  height:100%;
+  animation:symbol-rotate 4s linear infinite;
+  filter:drop-shadow(0 8px 16px rgba(212,175,55,.24));
+}
+@keyframes symbol-rotate{
+  0%   { transform:rotateY(0deg) }
+  100% { transform:rotateY(360deg) }
+}
+.swaminarayan-symbol:nth-child(3) svg{
+  animation-direction:reverse;
+}
+.swaminarayan-text{
+  font-family:var(--font-display);
+  font-size:clamp(1.1rem,4vw,1.4rem);
+  font-weight:600;
+  letter-spacing:.08em;
+  color:var(--gold);
+  text-shadow:0 4px 12px rgba(212,175,55,.18);
+  opacity:0;
+  animation:fade-in 1s ease-out .6s both;
+  line-height:1.4;
+}
+
 .blessing{
   margin:56px auto 0;
   text-align:center;
@@ -1155,6 +1197,50 @@ body.card-open #sagaiLabel{ opacity:0 }
 
   <p class="blessing on-scroll">May Shree Ganesha bless this new beginning with joy, prosperity and love.</p>
   <p class="signoff on-scroll">Rohan &amp; Neha · Pune · 2026</p>
+
+  <div class="swaminarayan-section on-scroll">
+    <svg class="swaminarayan-symbol" viewBox="0 0 48 80" aria-hidden="true">
+      <defs>
+        <linearGradient id="swamOrange" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#FFA500"/>
+          <stop offset=".5" stop-color="#FFB520"/>
+          <stop offset="1" stop-color="#FF9500"/>
+        </linearGradient>
+      </defs>
+      <!-- Left vertical bar (thicker, more prominent) -->
+      <rect x="4" y="2" width="14" height="56" rx="7" fill="url(#swamOrange)" stroke="#FF8C00" stroke-width=".5"/>
+      <!-- Right vertical bar -->
+      <rect x="30" y="2" width="14" height="56" rx="7" fill="url(#swamOrange)" stroke="#FF8C00" stroke-width=".5"/>
+      <!-- Bottom curved connector (more defined) -->
+      <path d="M 18 58 Q 18 72 24 72 Q 30 72 30 58" fill="url(#swamOrange)" stroke="#FF8C00" stroke-width=".5"/>
+      <!-- Center red bindu (larger, more prominent) -->
+      <circle cx="24" cy="38" r="6.5" fill="#E31C23"/>
+      <circle cx="24" cy="38" r="5.5" fill="#FF3333" opacity=".8"/>
+    </svg>
+
+    <div class="swaminarayan-text">
+      Jay Shree<br/>Swaminarayan
+    </div>
+
+    <svg class="swaminarayan-symbol" viewBox="0 0 48 80" aria-hidden="true">
+      <defs>
+        <linearGradient id="swamOrange2" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#FFA500"/>
+          <stop offset=".5" stop-color="#FFB520"/>
+          <stop offset="1" stop-color="#FF9500"/>
+        </linearGradient>
+      </defs>
+      <!-- Left vertical bar -->
+      <rect x="4" y="2" width="14" height="56" rx="7" fill="url(#swamOrange2)" stroke="#FF8C00" stroke-width=".5"/>
+      <!-- Right vertical bar -->
+      <rect x="30" y="2" width="14" height="56" rx="7" fill="url(#swamOrange2)" stroke="#FF8C00" stroke-width=".5"/>
+      <!-- Bottom curved connector -->
+      <path d="M 18 58 Q 18 72 24 72 Q 30 72 30 58" fill="url(#swamOrange2)" stroke="#FF8C00" stroke-width=".5"/>
+      <!-- Center red bindu -->
+      <circle cx="24" cy="38" r="6.5" fill="#E31C23"/>
+      <circle cx="24" cy="38" r="5.5" fill="#FF3333" opacity=".8"/>
+    </svg>
+  </div>
 
 </main>
 
