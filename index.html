@@ -546,6 +546,47 @@ body.opened .scroll-cue{
 }
 
 /* ============================================================
+   RING ORNAMENT  —  traces itself in above the countdown
+   ============================================================ */
+.ring-ornament{
+  position:relative;
+  width:74px;
+  margin:0 auto 20px;
+}
+.ring-ornament::before{
+  content:'';
+  position:absolute;
+  inset:-14px -6px;
+  border-radius:50%;
+  pointer-events:none;
+  opacity:0;
+}
+.on-scroll.in .ring-ornament::before{
+  opacity:1;
+  animation:glow-breathe 5s ease-in-out 1s infinite;
+}
+.ring-ornament svg{
+  width:100%;
+  height:auto;
+  overflow:visible;
+  display:block;
+  color:var(--gold);
+}
+.ring-path{
+  fill:none;
+  stroke:currentColor;
+  stroke-width:2.6;
+  stroke-linecap:round;
+  /* Circumference of r=14 (2πr ≈ 88); starts fully hidden and traces
+     itself in once the section scrolls into view. */
+  stroke-dasharray:88;
+  stroke-dashoffset:88;
+  transition:stroke-dashoffset 1s var(--ease-out);
+}
+.on-scroll.in .ring-path{ stroke-dashoffset:0 }
+.on-scroll.in .ring-path-2{ transition-delay:.3s }
+
+/* ============================================================
    COUNTDOWN
    ============================================================ */
 .section-label{
@@ -975,6 +1016,12 @@ body.card-open #sagaiLabel{ opacity:0 }
 
   <!-- ======================= COUNTDOWN ======================= -->
   <section class="on-scroll" aria-labelledby="cdLabel">
+    <div class="ring-ornament" aria-hidden="true">
+      <svg viewBox="0 0 64 34">
+        <circle class="ring-path" cx="24" cy="17" r="14"/>
+        <circle class="ring-path ring-path-2" cx="40" cy="17" r="14"/>
+      </svg>
+    </div>
     <p class="section-label" id="cdLabel">Counting down to the day</p>
     <div class="countdown" id="countdown" role="timer" aria-live="off">
       <div class="cd-cell"><span class="cd-num" data-cd="days">--</span><span class="cd-label">Days</span></div>
